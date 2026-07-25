@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Dashboard • SteriApp
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+</head>
+
+<body>
+
+  <!-- ===================================================== -->
+  <!-- SIDEBAR -->
+  <!-- ===================================================== -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-top">
+
+      <div class="brand">
+
+        <img
+          src="../assets/icon/icon.png"
+          alt="SteriApp"
+          class="brand-logo"
+        />
+
+        <div>
+
+          <h2>SteriApp</h2>
+
+          <span>
+            Dashboard Inteligente
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MENU -->
+
+    <nav class="sidebar-menu">
+
+      <a href="#" class="active">
+        Dashboard
+      </a>
+
+      <a href="#">
+        Ciclos
+      </a>
+
+      <a href="#">
+        Relatórios
+      </a>
+
+      <a href="#">
+        Etiquetas
+      </a>
+
+      <a href="#">
+        Autoclaves
+      </a>
+
+      <a href="#">
+        Configurações
+      </a>
+
+    </nav>
+
+    <!-- FOOTER -->
+
+    <div class="sidebar-footer">
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+      >
+        Sair
+      </button>
+
+    </div>
+
+  </aside>
+
+  <!-- ===================================================== -->
+  <!-- MAIN -->
+  <!-- ===================================================== -->
+
+  <main class="dashboard-main">
+
+    <!-- ================================================= -->
+    <!-- TOPBAR -->
+    <!-- ================================================= -->
+
+    <header class="topbar">
+
+      <div>
+
+        <h1>
+          Dashboard SteriApp
+        </h1>
+
+        <p>
+          Monitoramento inteligente da esterilização
+        </p>
+
+      </div>
+
+      <!-- USER INFO -->
+
+      <div class="topbar-right">
+
+        <div class="status-online">
+
+          <span class="status-dot"></span>
+
+          Online
+
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- ================================================= -->
+    <!-- USER INFO -->
+    <!-- ================================================= -->
+
+    <section class="user-info-grid">
+
+      <div class="user-card">
+
+        <span class="card-label">
+          Clínica
+        </span>
+
+        <h3 id="clinicName">
+          --
+        </h3>
+
+      </div>
+
+      <div class="user-card">
+
+        <span class="card-label">
+          Usuário
+        </span>
+
+        <h3 id="nickname">
+          --
+        </h3>
+
+      </div>
+
+      <div class="user-card">
+
+        <span class="card-label">
+          Autoclave
+        </span>
+
+        <h3 id="autoclaveModel">
+          --
+        </h3>
+
+      </div>
+
+      <div class="user-card">
+
+        <span class="card-label">
+          Serial
+        </span>
+
+        <h3 id="autoclaveSerial">
+          --
+        </h3>
+
+      </div>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- CARDS -->
+    <!-- ================================================= -->
+
+    <section class="cards-grid">
+
+      <!-- TOTAL -->
+
+      <div class="dashboard-card">
+
+        <span class="card-title">
+          Total de Ciclos
+        </span>
+
+        <h2 id="totalCycles">
+          0
+        </h2>
+
+      </div>
+
+      <!-- LAST -->
+
+      <div class="dashboard-card">
+
+        <span class="card-title">
+          Último Ciclo
+        </span>
+
+        <h2 id="lastCycle">
+          --
+        </h2>
+
+      </div>
+
+      <!-- LABELS -->
+
+      <div class="dashboard-card">
+
+        <span class="card-title">
+          Etiquetas Impressas
+        </span>
+
+        <h2 id="labelsCount">
+          0
+        </h2>
+
+      </div>
+
+      <!-- CLOUD -->
+
+      <div class="dashboard-card">
+
+        <span class="card-title">
+          Status da Nuvem
+        </span>
+
+        <h2 class="cloud-ok">
+          Sincronizado
+        </h2>
+
+      </div>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- FILTERS -->
+    <!-- ================================================= -->
+
+    <section class="filters-section">
+
+      <button class="filter-button active">
+        Hoje
+      </button>
+
+      <button class="filter-button">
+        7 Dias
+      </button>
+
+      <button class="filter-button">
+        30 Dias
+      </button>
+
+      <button class="filter-button">
+        Todos
+      </button>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- TABLE -->
+    <!-- ================================================= -->
+
+    <section class="table-section">
+
+      <div class="table-header">
+
+        <h2>
+          Ciclos Recentes
+        </h2>
+
+      </div>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Ciclo
+              </th>
+
+              <th>
+                Data
+              </th>
+
+              <th>
+                Operador
+              </th>
+
+              <th>
+                Autoclave
+              </th>
+
+              <th>
+                Status
+              </th>
+
+              <th>
+                QR Code
+              </th>
+
+              <th>
+                PDF
+              </th>
+
+              <th>
+                Etiqueta
+              </th>
+
+              <th>
+                Erro
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="cyclesTableBody">
+
+            <!-- DASHBOARD.JS -->
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ===================================================== -->
+  <!-- JS -->
+  <!-- ===================================================== -->
+
+  <script src="../js/dashboard.js"></script>
+
+</body>
+</html>

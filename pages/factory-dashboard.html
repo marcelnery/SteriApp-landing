@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>
+    Factory Dashboard • SteriApp
+  </title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/global.css"/>
+  <link rel="stylesheet" href="../css/factory-dashboard.css"/>
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+<!-- ===================================================== -->
+<!-- SIDEBAR -->
+<!-- ===================================================== -->
+<aside class="sidebar">
+  <div>
+    <!-- BRAND -->
+    <div class="brand">
+      <img
+        src="../assets/icon/icon.png"
+        class="brand-logo"
+      />
+      <div>
+        <h2>SteriApp</h2>
+        <span>
+          Factory Dashboard
+        </span>
+      </div>
+    </div>
+    <!-- MENU -->
+    <nav class="sidebar-menu">
+      <a href="#" class="active">
+        Dashboard
+      </a>
+      <a href="#">
+        Usuários
+      </a>
+      <a href="#">
+        Autoclaves
+      </a>
+      <a href="#">
+        Ciclos
+      </a>
+      <a href="#">
+        Alertas
+      </a>
+      <a href="#">
+        Logs
+      </a>
+      <a href="#">
+        Relatórios
+      </a>
+      <a href="#">
+        Configurações
+      </a>
+    </nav>
+  </div>
+  <!-- FOOTER -->
+  <div class="sidebar-footer">
+    <button class="support-button">
+      📞 Fale Conosco
+    </button>
+    <button class="logout-button">
+      Sair
+    </button>
+  </div>
+</aside>
+<!-- ===================================================== -->
+<!-- MAIN -->
+<!-- ===================================================== -->
+<main class="dashboard-main">
+  <!-- ================================================= -->
+  <!-- TOPBAR -->
+  <!-- ================================================= -->
+  <header class="topbar">
+    <div>
+      <h1>
+        Dashboard Fábrica
+      </h1>
+      <p>
+        Controle total da plataforma SteriApp
+      </p>
+    </div>
+    <div class="status-online">
+      <span class="status-dot"></span>
+      Sistema Online
+    </div>
+  </header>
+  <!-- ================================================= -->
+  <!-- CARDS -->
+  <!-- ================================================= -->
+  <section class="cards-grid">
+    <div class="dashboard-card">
+      <span class="card-title">
+        Total Usuários
+      </span>
+      <h2 id="totalUsers">
+        0
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        Total Autoclaves
+      </span>
+      <h2 id="totalAutoclaves">
+        0
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        Ciclos Hoje
+      </span>
+      <h2 id="todayCycles">
+        0
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        Ciclos Totais
+      </span>
+      <h2 id="totalCycles">
+        0
+      </h2>
+    </div>
+  </section>
+  <!-- ================================================= -->
+  <!-- STATUS CARDS -->
+  <!-- ================================================= -->
+  <section class="cards-grid">
+    <div class="dashboard-card">
+      <span class="card-title">
+        Equipamentos Online
+      </span>
+      <h2 class="cloud-ok">
+        Online
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        Falhas Detectadas
+      </span>
+      <h2 class="status-error-text">
+        0
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        MongoDB
+      </span>
+      <h2 class="cloud-ok">
+        Conectado
+      </h2>
+    </div>
+    <div class="dashboard-card">
+      <span class="card-title">
+        Nuvem
+      </span>
+      <h2 class="cloud-ok">
+        Sincronizado
+      </h2>
+    </div>
+  </section>
+  <!-- ================================================= -->
+  <!-- TABLE -->
+  <!-- ================================================= -->
+  <section class="table-section">
+    <div class="table-header">
+      <h2>
+        Ciclos Recentes da Plataforma
+      </h2>
+    </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Clínica</th>
+            <th>Usuário</th>
+            <th>Autoclave</th>
+            <th>Serial</th>
+            <th>Ciclo</th>
+            <th>Programa</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>QR</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody id="factoryCyclesTable">
+          <!-- factory-dashboard.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<!-- ===================================================== -->
+<!-- JS -->
+<!-- ===================================================== -->
+<script src="../js/factory-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+/* =======================================================
+   STERIAPP GLOBAL CSS
+   Base Premium UI System
+======================================================= */
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root{
+
+  /* COLORS */
+
+  --primary:#5E2B97;
+  --primary-dark:#4a2277;
+  --primary-light:#7B46B5;
+
+  --secondary:#7c3aed;
+
+  --white:#ffffff;
+
+--background:#0b0714;
+
+--text:#ffffff;
+--text-light:#b8b2cb;
+
+--border:rgba(255,255,255,0.08);
+
+  --success:#18b26b;
+  --danger:#ef4444;
+
+  /* SHADOWS */
+
+  --shadow-sm:
+    0 2px 8px rgba(0,0,0,0.04);
+
+  --shadow-md:
+    0 8px 24px rgba(0,0,0,0.08);
+
+  --shadow-lg:
+    0 20px 40px rgba(0,0,0,0.12);
+
+  /* RADIUS */
+
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:28px;
+
+  /* TRANSITIONS */
+
+  --transition:
+    all 0.28s ease;
+
+  /* CONTAINER */
+
+  --container:
+    1280px;
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+  font-family:'Inter',sans-serif;
+
+  background:#0b0714;
+
+  color:#ffffff;
+
+  overflow-x:hidden;
+
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* =========================
+   GLOBAL ELEMENTS
+========================= */
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+
+h1{
+  font-size:64px;
+  line-height:1.05;
+  font-weight:800;
+  letter-spacing:-2px;
+}
+
+h2{
+  font-size:44px;
+  line-height:1.1;
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+h3{
+  font-size:24px;
+  font-weight:700;
+}
+
+p{
+  line-height:1.7;
+  color:var(--text-light);
+}
+
+/* =========================
+   CONTAINERS
+========================= */
+
+section{
+  width:100%;
+  padding:120px 24px;
+}
+
+.container{
+  width:100%;
+  max-width:var(--container);
+  margin:auto;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-button{
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:58px;
+
+  padding:0 34px;
+
+  border-radius:16px;
+
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-light)
+  );
+
+  color:white;
+
+  font-size:16px;
+  font-weight:700;
+
+  transition:var(--transition);
+
+  box-shadow:
+    0 10px 25px rgba(94,43,151,0.25);
+}
+
+.primary-button:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 18px 35px rgba(94,43,151,0.32);
+}
+
+/* ========================= */
+
+.secondary-button{
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height:58px;
+
+  padding:0 34px;
+
+  border-radius:16px;
+
+  border:1px solid var(--border);
+
+  background:white;
+
+  font-size:16px;
+  font-weight:700;
+
+  transition:var(--transition);
+}
+
+.secondary-button:hover{
+
+  transform:translateY(-3px);
+
+  border-color:var(--primary);
+
+  color:var(--primary);
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge,
+.section-badge{
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 18px;
+
+  border-radius:999px;
+
+  background:
+    rgba(94,43,151,0.10);
+
+  color:var(--primary);
+
+  font-size:14px;
+  font-weight:700;
+
+  margin-bottom:22px;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header{
+
+  text-align:center;
+
+  max-width:760px;
+
+  margin:auto auto 70px auto;
+}
+
+.section-header p{
+
+  margin-top:18px;
+
+  font-size:18px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+
+  background:white;
+
+  border-radius:24px;
+
+  border:1px solid var(--border);
+
+  box-shadow:var(--shadow-sm);
+
+  transition:var(--transition);
+}
+
+.card:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:var(--shadow-md);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+  padding:70px 24px;
+
+  text-align:center;
+
+  background:#0f0f14;
+
+  color:white;
+}
+
+.footer p{
+
+  color:#b8b8c7;
+
+  margin-top:16px;
+  margin-bottom:16px;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#ececf2;
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:var(--primary);
+
+  border-radius:999px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.fade-up{
+  animation:fadeUp 0.7s ease forwards;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1024px){
+
+  h1{
+    font-size:52px;
+  }
+
+  h2{
+    font-size:38px;
+  }
+}
+
+@media(max-width:768px){
+
+  section{
+    padding:90px 20px;
+  }
+
+  h1{
+    font-size:42px;
+    line-height:1.1;
+  }
+
+  h2{
+    font-size:34px;
+  }
+
+  p{
+    font-size:15px;
+  }
+
+  .primary-button,
+  .secondary-button{
+
+    width:100%;
+  }
+}
+
+@media(max-width:480px){
+
+  h1{
+    font-size:34px;
+  }
+
+  h2{
+    font-size:28px;
+  }
+
+}
+
+/* =======================================================
+   PREMIUM BACKGROUND EFFECTS
+======================================================= */
+
+body::before{
+
+  content:"";
+
+  position:fixed;
+
+  width:600px;
+  height:600px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(124,58,237,0.18),
+      transparent 70%
+    );
+
+  top:-250px;
+  left:-200px;
+
+  z-index:-2;
+}
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  width:700px;
+  height:700px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(94,43,151,0.16),
+      transparent 70%
+    );
+
+  bottom:-300px;
+  right:-250px;
+
+  z-index:-2;
+}
+
+/* =======================================================
+   NAVBAR PREMIUM FIX
+======================================================= */
+
+.navbar{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+  right:0;
+
+  height:84px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 7%;
+
+  z-index:999;
+
+  background:
+    rgba(11,7,20,0.72);
+
+  backdrop-filter:blur(18px);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,0.06);
+}
+
+/* LEFT */
+
+.nav-left{
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+}
+
+.logo{
+
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
+  object-fit:cover;
+
+  box-shadow:
+    0 10px 30px
+    rgba(124,58,237,0.35);
+}
+
+.logo-text{
+
+  font-size:24px;
+  font-weight:800;
+
+  letter-spacing:-1px;
+}
+
+/* CENTER */
+
+.nav-center{
+
+  display:flex;
+  align-items:center;
+
+  gap:40px;
+}
+
+.nav-center a{
+
+  color:#cfc9df;
+
+  font-weight:500;
+
+  transition:0.3s;
+}
+
+.nav-center a:hover{
+  color:white;
+}
+
+/* RIGHT */
+
+.nav-right{
+
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+  .nav-center{
+    display:none;
+  }
+
+  .nav-right{
+    display:none;
+  }
+
+  .navbar{
+    justify-content:flex-start;
+  }
+}
