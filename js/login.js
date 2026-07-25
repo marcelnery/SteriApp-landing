@@ -23,7 +23,7 @@ form.addEventListener(
 
       const response =
         await fetch(
-          "https://backend-nu-nine-29.vercel.app/api/login",
+          "https://steriapp.com.br/api/login",
           {
             method:"POST",
 

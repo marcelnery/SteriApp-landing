@@ -8,7 +8,7 @@
 // ===============================
 
 const BASE_URL =
-  "https://backend-nu-nine-29.vercel.app";
+  "https://steriapp.com.br";
 
 // ===============================
 // TOKEN
