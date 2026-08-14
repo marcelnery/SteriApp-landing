@@ -8,7 +8,7 @@
 // ===============================
 
 const BASE_URL =
-  "https://steriapp.com.br";
+  "https://api.steriapp.com.br";
 
 // ===============================
 // TOKEN
