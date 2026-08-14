@@ -316,7 +316,7 @@ function renderCycles(cycles){
       <td>
         <button
           class="table-button"
-          onclick="printLabel('${cycle.cycleNumber}')"
+          onclick="printLabel('${cycle.id}')"
         >
           Etiqueta
         </button>
@@ -391,11 +391,15 @@ function openPdf(id){
 // PRINT LABEL
 // ===============================
 
-function printLabel(cycleNumber){
+function printLabel(cycleId){
 
-  alert(
-    `Impressão da etiqueta do ciclo ${cycleNumber} em desenvolvimento 🚀`
-  );
+  if(!cycleId){
+    alert("Não foi possível identificar o ciclo.");
+    return;
+  }
+
+  window.location.href =
+    `/pages/label_print.html?id=${encodeURIComponent(cycleId)}`;
 }
 
 // ===============================
