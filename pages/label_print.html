@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <!-- =====================================================
+       CONFIGURAÇÕES BÁSICAS
+  ====================================================== -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="SteriApp - Central de Impressão de Etiquetas"
+  >
+
+  <meta
+    name="theme-color"
+    content="#5E2B97"
+  >
+
+  <title>
+    SteriApp | Impressão de Etiquetas
+  </title>
+
+
+  <!-- =====================================================
+       CSS DA PÁGINA
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../css/label_print.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       APP
+  ====================================================== -->
+
+  <div id="app">
+
+
+    <!-- ===================================================
+         SIDEBAR
+    ==================================================== -->
+
+    <aside
+      class="sidebar"
+      id="sidebar"
+    >
+
+
+      <!-- =================================================
+           LOGO
+      ================================================== -->
+
+      <div class="sidebar-brand">
+
+        <div class="brand-logo">
+
+          <img
+            src="../assets/images/logo_woson.png"
+            alt="SteriApp"
+          >
+
+        </div>
+
+
+        <div class="brand-text">
+
+          <strong>
+            SteriApp
+          </strong>
+
+          <span>
+            Dashboard Inteligente
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           MENU
+      ================================================== -->
+
+      <nav
+        class="sidebar-nav"
+        aria-label="Menu principal"
+      >
+
+
+        <!-- DASHBOARD -->
+
+        <a
+          href="/pages/dashboard.html"
+          class="nav-item"
+        >
+
+          <span class="nav-icon">
+            <span>▣</span>
+          </span>
+
+          <span class="nav-label">
+            Dashboard
+          </span>
+
+        </a>
+
+
+        <!-- CICLOS -->
+
+        <a
+          href="/pages/cycles.html"
+          class="nav-item"
+        >
+
+          <span class="nav-icon">
+            <span>↻</span>
+          </span>
+
+          <span class="nav-label">
+            Ciclos
+          </span>
+
+        </a>
+
+
+        <!-- RELATÓRIOS -->
+
+        <a
+          href="/pages/reports.html"
+          class="nav-item"
+        >
+
+          <span class="nav-icon">
+            <span>▤</span>
+          </span>
+
+          <span class="nav-label">
+            Relatórios
+          </span>
+
+        </a>
+
+
+        <!-- ETIQUETAS -->
+
+        <a
+          href="/pages/labels.html"
+          class="nav-item active"
+        >
+
+          <span class="nav-icon">
+            <span>▥</span>
+          </span>
+
+          <span class="nav-label">
+            Etiquetas
+          </span>
+
+        </a>
+
+
+        <!-- AUTOCLAVES -->
+
+        <a
+          href="/pages/autoclaves.html"
+          class="nav-item"
+        >
+
+          <span class="nav-icon">
+            <span>⚙️</span>
+          </span>
+
+          <span class="nav-label">
+            Autoclaves
+          </span>
+
+        </a>
+
+
+        <!-- CONFIGURAÇÕES -->
+
+        <a
+          href="/pages/settings.html"
+          class="nav-item"
+        >
+
+          <span class="nav-icon">
+            <span>☷</span>
+          </span>
+
+          <span class="nav-label">
+            Configurações
+          </span>
+
+        </a>
+
+      </nav>
+
+
+      <!-- =================================================
+           RODAPÉ DA SIDEBAR
+      ================================================== -->
+
+      <div class="sidebar-footer">
+
+        <button
+          type="button"
+          class="logout-button"
+          id="logoutButton"
+        >
+
+          <span class="logout-icon">
+            ↪️
+          </span>
+
+          <span>
+            Sair
+          </span>
+
+        </button>
+
+      </div>
+
+
+    </aside>
+
+
+    <!-- ===================================================
+         ÁREA PRINCIPAL
+    ==================================================== -->
+
+    <main
+      class="main-content"
+      id="mainContent"
+    >
+
+
+      <!-- =================================================
+           HEADER
+      ================================================== -->
+
+      <header class="top-header">
+
+
+        <!-- MENU MOBILE -->
+
+        <button
+          type="button"
+          class="mobile-menu-button"
+          id="mobileMenuButton"
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+
+
+        <!-- TÍTULO -->
+
+        <div class="header-title">
+
+          <span class="header-overline">
+            STERIAPP
+          </span>
+
+          <h1>
+            Impressão de Etiquetas
+          </h1>
+
+          <p>
+            Central inteligente de rastreabilidade e esterilização
+          </p>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="header-status">
+
+          <span
+            class="status-indicator"
+            id="systemStatusIndicator"
+          ></span>
+
+          <span id="systemStatus">
+            Sistema Online
+          </span>
+
+        </div>
+
+
+      </header>
+
+
+      <!-- =================================================
+           CONTEÚDO DA PÁGINA
+      ================================================== -->
+
+      <div class="page-content">
+
+
+        <!-- =================================================
+             BREADCRUMB
+        ================================================== -->
+
+        <div class="breadcrumb">
+
+          <a href="/pages/dashboard.html">
+            Dashboard
+          </a>
+
+          <span>
+            /
+          </span>
+
+          <span>
+            Etiquetas
+          </span>
+
+          <span>
+            /
+          </span>
+
+          <strong>
+            Impressão
+          </strong>
+
+        </div>
+
+
+        <!-- =================================================
+             TÍTULO DA CENTRAL
+        ================================================== -->
+
+        <section class="print-heading">
+
+          <div class="print-heading-icon">
+
+            <span>
+              🖨️
+            </span>
+
+          </div>
+
+
+          <div>
+
+            <span class="section-overline">
+              CENTRAL DE IMPRESSÃO
+            </span>
+
+            <h2>
+              Etiquetas de Esterilização
+            </h2>
+
+            <p>
+              Gere etiquetas de rastreabilidade para os ciclos
+              realizados na autoclave.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             GRID PRINCIPAL
+        ================================================== -->
+
+        <div class="print-layout">
+
+
+          <!-- =================================================
+               COLUNA ESQUERDA
+          ================================================== -->
+
+          <div class="left-column">
+
+
+            <!-- =============================================
+                 DADOS DO CICLO
+            ============================================== -->
+
+            <section
+              class="dashboard-card cycle-card"
+              id="cycleCard"
+            >
+
+
+              <!-- CABEÇALHO -->
+
+              <div class="card-header">
+
+                <div class="card-header-icon purple">
+
+                  <span>
+                    ✓
+                  </span>
+
+                </div>
+
+
+                <div class="card-header-text">
+
+                  <h3>
+                    Dados do Ciclo
+                  </h3>
+
+                  <p>
+                    Informações da esterilização
+                  </p>
+
+                </div>
+
+
+                <div class="cycle-status">
+
+                  <span
+                    class="status-badge loading"
+                    id="cycleStatusBadge"
+                  >
+                    Carregando...
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <!-- DADOS -->
+
+              <div class="cycle-data-grid">
+
+
+                <!-- CICLO -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Ciclo
+                  </span>
+
+                  <strong
+                    id="cycleNumber"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- DATA -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Data da esterilização
+                  </span>
+
+                  <strong
+                    id="sterilizationDate"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- CLÍNICA -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Clínica
+                  </span>
+
+                  <strong
+                    id="clinicName"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- OPERADOR -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Operador
+                  </span>
+
+                  <strong
+                    id="operatorName"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- RESPONSÁVEL -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Responsável
+                  </span>
+
+                  <strong
+                    id="dentistName"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- AUTOCLAVE -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Autoclave
+                  </span>
+
+                  <strong
+                    id="autoclaveModel"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- NÚMERO DE SÉRIE -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Número de série
+                  </span>
+
+                  <strong
+                    id="serialNumber"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+                <!-- PROGRAMA -->
+
+                <div class="data-box">
+
+                  <span class="data-label">
+                    Programa
+                  </span>
+
+                  <strong
+                    id="program"
+                    class="data-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+              </div>
+
+
+              <!-- DETALHES TÉCNICOS -->
+
+              <div class="cycle-details">
+
+
+                <div class="detail-item">
+
+                  <span>
+                    Temperatura
+                  </span>
+
+                  <strong id="sterilizationTemperature">
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                  <span>
+                    Tempo de esterilização
+                  </span>
+
+                  <strong id="sterilizationTime">
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                  <span>
+                    Resultado
+                  </span>
+
+                  <strong
+                    id="cycleResult"
+                    class="result-value"
+                  >
+                    —
+                  </strong>
+
+                </div>
+
+
+              </div>
+
+
+            </section>
+
+
+            <!-- =============================================
+                 TIPOS DE ETIQUETA
+            ============================================== -->
+
+            <section class="dashboard-card">
+
+              <div class="card-header">
+
+                <div class="card-header-icon purple">
+
+                  <span>
+                    ▣
+                  </span>
+
+                </div>
+
+
+                <div class="card-header-text">
+
+                  <h3>
+                    Tipo de Etiqueta
+                  </h3>
+
+                  <p>
+                    Selecione o modelo que deseja imprimir
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- TIPOS -->
+
+              <div class="label-types-grid">
+
+
+                <!-- BROCAS -->
+
+                <button
+                  type="button"
+                  class="label-type-card blue"
+                  data-label-type="brocas"
+                >
+
+                  <span class="label-type-icon">
+                    ✦
+                  </span>
+
+                  <span class="label-type-content">
+
+                    <strong>
+                      Etiquetas para Brocas
+                    </strong>
+
+                    <small>
+                      Ideal para brocas odontológicas.
+                    </small>
+
+                  </span>
+
+                  <span class="label-type-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- KIT -->
+
+                <button
+                  type="button"
+                  class="label-type-card green"
+                  data-label-type="kit"
+                >
+
+                  <span class="label-type-icon">
+                    ✚
+                  </span>
+
+                  <span class="label-type-content">
+
+                    <strong>
+                      Etiquetas para Kit
+                    </strong>
+
+                    <small>
+                      Instrumentais em geral.
+                    </small>
+
+                  </span>
+
+                  <span class="label-type-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- KIT CIRÚRGICO -->
+
+                <button
+                  type="button"
+                  class="label-type-card orange"
+                  data-label-type="kitCirurgico"
+                >
+
+                  <span class="label-type-icon">
+                    ✚
+                  </span>
+
+                  <span class="label-type-content">
+
+                    <strong>
+                      Kit Cirúrgico
+                    </strong>
+
+                    <small>
+                      Caixas cirúrgicas completas.
+                    </small>
+
+                  </span>
+
+                  <span class="label-type-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- BANDEJAS -->
+
+                <button
+                  type="button"
+                  class="label-type-card purple"
+                  data-label-type="bandeja"
+                >
+
+                  <span class="label-type-icon">
+                    ▣
+                  </span>
+
+                  <span class="label-type-content">
+
+                    <strong>
+                      Bandejas
+                    </strong>
+
+                    <small>
+                      Etiquetas para bandejas clínicas.
+                    </small>
+
+                  </span>
+
+                  <span class="label-type-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+                <!-- MANUAL -->
+
+                <button
+                  type="button"
+                  class="label-type-card red"
+                  data-label-type="manual"
+                >
+
+                  <span class="label-type-icon">
+                    ✎
+                  </span>
+
+                  <span class="label-type-content">
+
+                    <strong>
+                      Etiqueta Manual
+                    </strong>
+
+                    <small>
+                      Defina largura e altura personalizadas.
+                    </small>
+
+                  </span>
+
+                  <span class="label-type-arrow">
+                    →
+                  </span>
+
+                </button>
+
+
+              </div>
+
+
+              <!-- TIPO SELECIONADO -->
+
+              <div
+                class="selected-type"
+                id="selectedTypeContainer"
+                hidden
+              >
+
+                <span>
+                  Tipo selecionado:
+                </span>
+
+                <strong id="selectedLabelType">
+                  —
+                </strong>
+
+                <button
+                  type="button"
+                  id="changeLabelType"
+                >
+                  Alterar
+                </button>
+
+              </div>
+
+
+            </section>
+
+
+          </div>
+
+
+          <!-- =================================================
+               COLUNA DIREITA
+          ================================================== -->
+
+          <div class="right-column">
+
+
+            <!-- =============================================
+                 CONFIGURAÇÃO DE IMPRESSÃO
+            ============================================== -->
+
+            <section
+              class="dashboard-card print-config-card"
+              id="printConfiguration"
+            >
+
+
+              <div class="card-header">
+
+                <div class="card-header-icon purple">
+
+                  <span>
+                    ⚙️
+                  </span>
+
+                </div>
+
+
+                <div class="card-header-text">
+
+                  <h3>
+                    Configuração da Impressão
+                  </h3>
+
+                  <p>
+                    Configure como deseja gerar as etiquetas
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <!-- ===========================================
+                   QUANTIDADE
+              ============================================ -->
+
+              <div class="form-group">
+
+                <label for="quantity">
+
+                  Quantidade de etiquetas
+
+                </label>
+
+                <div class="quantity-input">
+
+                  <button
+                    type="button"
+                    id="quantityMinus"
+                    aria-label="Diminuir quantidade"
+                  >
+                    −
+                  </button>
+
+                  <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    max="999"
+                    value="1"
+                    inputmode="numeric"
+                  >
+
+                  <button
+                    type="button"
+                    id="quantityPlus"
+                    aria-label="Aumentar quantidade"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+                <small>
+                  Informe quantas etiquetas deseja gerar.
+                </small>
+
+              </div>
+
+
+              <!-- ===========================================
+                   MODO DE IMPRESSÃO
+              ============================================ -->
+
+              <div class="form-group">
+
+                <label>
+                  Modo de impressão
+                </label>
+
+
+                <div class="print-mode-options">
+
+
+                  <!-- A4 -->
+
+                  <label
+                    class="print-mode-option selected"
+                    data-print-mode-option="a4"
+                  >
+
+                    <input
+                      type="radio"
+                      name="printMode"
+                      id="printModeA4"
+                      value="a4"
+                      checked
+                    >
+
+                    <span class="radio-custom"></span>
+
+
+                    <span class="print-mode-icon">
+                      ▤
+                    </span>
+
+
+                    <span class="print-mode-content">
+
+                      <strong>
+                        Folha A4
+                      </strong>
+
+                      <small>
+                        Várias etiquetas organizadas
+                        automaticamente na folha.
+                      </small>
+
+                    </span>
+
+                  </label>
+
+
+                  <!-- DEDICADA -->
+
+                  <label
+                    class="print-mode-option"
+                    data-print-mode-option="dedicated"
+                  >
+
+                    <input
+                      type="radio"
+                      name="printMode"
+                      id="printModeDedicated"
+                      value="dedicated"
+                    >
+
+                    <span class="radio-custom"></span>
+
+
+                    <span class="print-mode-icon">
+                      🖨️
+                    </span>
+
+
+                    <span class="print-mode-content">
+
+                      <strong>
+                        Impressora dedicada
+                      </strong>
+
+                      <small>
+                        Uma etiqueta por página no
+                        tamanho físico real.
+                      </small>
+
+                    </span>
+
+                  </label>
+
+
+                </div>
+
+              </div>
+
+
+              <!-- ===========================================
+                   TAMANHO DA ETIQUETA
+              ============================================ -->
+
+              <div class="label-size-info">
+
+                <span>
+                  Tamanho da etiqueta
+                </span>
+
+                <strong id="labelSize">
+                  Selecione um modelo
+                </strong>
+
+              </div>
+
+
+              <!-- ===========================================
+                   INFORMAÇÃO
+              ============================================ -->
+
+              <div
+                class="configuration-message"
+                id="configurationMessage"
+              >
+
+                <span class="message-icon">
+                  ⓘ
+                </span>
+
+                <p id="configurationMessageText">
+
+                  Selecione um tipo de etiqueta
+                  para continuar.
+
+                </p>
+
+              </div>
+
+
+              <!-- ===========================================
+                   BOTÃO GERAR
+              ============================================ -->
+
+              <button
+                type="button"
+                class="generate-button"
+                id="generateButton"
+                disabled
+              >
+
+                <span class="button-icon">
+                  🖨️
+                </span>
+
+                <span class="button-text">
+                  Gerar Etiquetas
+                </span>
+
+              </button>
+
+
+            </section>
+
+
+            <!-- =============================================
+                 RESUMO DA IMPRESSÃO
+            ============================================== -->
+
+            <section
+              class="dashboard-card print-summary"
+              id="printSummary"
+            >
+
+              <div class="card-header">
+
+                <div class="card-header-icon green">
+
+                  <span>
+                    ✓
+                  </span>
+
+                </div>
+
+
+                <div class="card-header-text">
+
+                  <h3>
+                    Resumo da Impressão
+                  </h3>
+
+                  <p>
+                    Confira antes de imprimir
+                  </p>
+
+                </div>
+
+              </div>
+
+
+              <div class="summary-list">
+
+
+                <div class="summary-row">
+
+                  <span>
+                    Ciclo
+                  </span>
+
+                  <strong id="summaryCycle">
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                  <span>
+                    Tipo
+                  </span>
+
+                  <strong id="summaryType">
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                  <span>
+                    Quantidade
+                  </span>
+
+                  <strong id="summaryQuantity">
+                    1
+                  </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                  <span>
+                    Formato
+                  </span>
+
+                  <strong id="summaryMode">
+                    A4
+                  </strong>
+
+                </div>
+
+
+              </div>
+
+
+            </section>
+
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             PRÉVIA DA ETIQUETA
+        ================================================== -->
+
+        <section
+          class="dashboard-card preview-card"
+          id="previewCard"
+        >
+
+
+          <div class="card-header">
+
+            <div class="card-header-icon purple">
+
+              <span>
+                ◉
+              </span>
+
+            </div>
+
+
+            <div class="card-header-text">
+
+              <h3>
+                Prévia da Etiqueta
+              </h3>
+
+              <p>
+                Visualização aproximada do modelo selecionado
+              </p>
+
+            </div>
+
+
+            <div class="preview-status">
+
+              <span id="previewStatus">
+                Aguardando seleção
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- ÁREA DA PRÉVIA -->
+
+          <div
+            class="preview-area"
+            id="previewArea"
+          >
+
+            <div
+              class="preview-placeholder"
+              id="previewPlaceholder"
+            >
+
+              <div class="preview-placeholder-icon">
+                🏷️
+              </div>
+
+              <h4>
+                Selecione um tipo de etiqueta
+              </h4>
+
+              <p>
+                A prévia será exibida aqui.
+              </p>
+
+            </div>
+
+
+            <!-- ETIQUETA GERADA PELO JS -->
+
+            <div
+              id="labelPreview"
+              class="label-preview"
+              hidden
+            >
+
+              <!--
+                O conteúdo visual da etiqueta será
+                criado pelo label_print.js.
+              -->
+
+            </div>
+
+          </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             INFORMAÇÕES DE RASTREABILIDADE
+        ================================================== -->
+
+        <section class="traceability-banner">
+
+
+          <div class="traceability-icon">
+            ✓
+          </div>
+
+
+          <div class="traceability-content">
+
+            <strong>
+              Rastreabilidade SteriApp
+            </strong>
+
+            <p>
+              Cada etiqueta possui identificação vinculada
+              ao ciclo de esterilização e ao registro digital.
+            </p>
+
+          </div>
+
+
+          <div class="traceability-status">
+
+            <span class="status-indicator"></span>
+
+            Registro digital
+
+          </div>
+
+
+        </section>
+
+
+      </div>
+
+
+      <!-- =================================================
+           FOOTER
+      ================================================== -->
+
+      <footer class="main-footer">
+
+        <div class="footer-brand">
+
+          <strong>
+            SteriApp
+          </strong>
+
+          <span>
+            Tecnologia inteligente em esterilização odontológica
+          </span>
+
+        </div>
+
+
+        <div class="footer-copy">
+
+          © 2026 SteriApp • Todos os direitos reservados
+
+        </div>
+
+      </footer>
+
+
+    </main>
+
+
+  </div>
+
+
+  <!-- =====================================================
+       LOADING OVERLAY
+  ====================================================== -->
+
+  <div
+    class="loading-overlay"
+    id="loadingOverlay"
+    hidden
+  >
+
+    <div class="loading-box">
+
+      <div class="loading-spinner"></div>
+
+      <strong id="loadingTitle">
+        Carregando ciclo...
+      </strong>
+
+      <span id="loadingMessage">
+        Aguarde enquanto buscamos os dados.
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL DE CONFIRMAÇÃO
+  ====================================================== -->
+
+  <div
+    class="modal-overlay"
+    id="confirmModal"
+    hidden
+  >
+
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirmModalTitle"
+    >
+
+
+      <div class="modal-icon">
+        ✓
+      </div>
+
+
+      <h2 id="confirmModalTitle">
+        Confirmar impressão
+      </h2>
+
+
+      <p id="confirmModalMessage">
+
+        Confira os dados antes de gerar
+        as etiquetas.
+
+      </p>
+
+
+      <div class="modal-summary">
+
+
+        <div>
+
+          <span>
+            Ciclo
+          </span>
+
+          <strong id="modalCycle">
+            —
+          </strong>
+
+        </div>
+
+
+        <div>
+
+          <span>
+            Tipo
+          </span>
+
+          <strong id="modalType">
+            —
+          </strong>
+
+        </div>
+
+
+        <div>
+
+          <span>
+            Quantidade
+          </span>
+
+          <strong id="modalQuantity">
+            —
+          </strong>
+
+        </div>
+
+
+        <div>
+
+          <span>
+            Impressão
+          </span>
+
+          <strong id="modalMode">
+            —
+          </strong>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="modal-actions">
+
+        <button
+          type="button"
+          class="modal-button secondary"
+          id="cancelPrintButton"
+        >
+          Cancelar
+        </button>
+
+
+        <button
+          type="button"
+          class="modal-button primary"
+          id="confirmPrintButton"
+        >
+
+          <span>
+            🖨️
+          </span>
+
+          Confirmar impressão
+
+        </button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       TOAST / NOTIFICAÇÕES
+  ====================================================== -->
+
+  <div
+    class="toast-container"
+    id="toastContainer"
+    aria-live="polite"
+  >
+
+    <div
+      class="toast"
+      id="toast"
+      hidden
+    >
+
+      <span
+        class="toast-icon"
+        id="toastIcon"
+      >
+        ✓
+      </span>
+
+
+      <div class="toast-content">
+
+        <strong id="toastTitle">
+          SteriApp
+        </strong>
+
+        <span id="toastMessage">
+          —
+        </span>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="closeToast"
+        aria-label="Fechar"
+      >
+        ×
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script
+    src="../js/label_print.js"
+    defer
+  ></script>
+
+
+</body>
+
+</html>
