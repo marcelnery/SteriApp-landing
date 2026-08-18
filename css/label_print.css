@@ -1426,7 +1426,81 @@ a {
   font-size: 10px;
 }
 
+/* =========================================================
+   PRÉVIA — BROCAS 26 × 15 MM
+   ========================================================= */
 
+#labelPreview .steri-label.label-brocas {
+  width: 26mm;
+  height: 15mm;
+
+  min-width: 26mm;
+  min-height: 15mm;
+
+  max-width: 26mm;
+  max-height: 15mm;
+
+  padding: 1mm;
+
+  overflow: hidden;
+}
+
+/* Na etiqueta pequena mostramos somente os campos
+   que realmente cabem fisicamente. */
+
+#labelPreview .label-brocas .label-field:nth-child(n+5) {
+  display: none;
+}
+
+#labelPreview .label-brocas .label-information {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 0.3mm 1mm;
+}
+
+#labelPreview .label-brocas .label-field span {
+  font-size: 0.85mm;
+  line-height: 1;
+}
+
+#labelPreview .label-brocas .label-field strong {
+  font-size: 1.25mm;
+  line-height: 1.05;
+
+  margin-top: 0.2mm;
+}
+
+#labelPreview .label-brocas .label-qr-area {
+  width: 8mm;
+  min-width: 8mm;
+}
+
+#labelPreview .label-brocas .label-qr {
+  width: 6.5mm;
+  height: 6.5mm;
+}
+
+#labelPreview .label-brocas .label-qr img,
+#labelPreview .label-brocas .label-qr canvas {
+  width: 6.5mm !important;
+  height: 6.5mm !important;
+}
+
+#labelPreview .label-brocas .label-brand-text strong {
+  font-size: 2mm;
+}
+
+#labelPreview .label-brocas .label-brand-text span {
+  font-size: 0.9mm;
+}
+
+#labelPreview .label-brocas .label-cycle small {
+  font-size: 0.9mm;
+}
+
+#labelPreview .label-brocas .label-cycle strong {
+  font-size: 2.2mm;
+}
 /* ============================================================
    ETIQUETA
 ============================================================ */
@@ -1467,26 +1541,6 @@ a {
 }
 
 
-
-.steri-label.label-brocas {
-  max-width: 420px;
-}
-
-.steri-label.label-kit {
-  max-width: 470px;
-}
-
-.steri-label.label-kit-cirurgico {
-  max-width: 520px;
-}
-
-.steri-label.label-bandeja {
-  max-width: 560px;
-}
-
-.steri-label.label-manual {
-  max-width: 520px;
-}
 
 
 /* ============================================================
@@ -2359,40 +2413,6 @@ input:focus-visible {
 
 }
 
-/* =========================================================
-   TAMANHOS FÍSICOS DAS ETIQUETAS
-   ========================================================= */
-
-.steri-label.label-brocas {
-  width: 26mm;
-  height: 15mm;
-  max-width: 26mm;
-}
-
-.steri-label.label-kit {
-  width: 44.45mm;
-  height: 16.93mm;
-  max-width: 44.45mm;
-}
-
-.steri-label.label-kitCirurgico {
-  width: 44.45mm;
-  height: 16.93mm;
-  max-width: 44.45mm;
-}
-
-.steri-label.label-bandeja {
-  width: 44.45mm;
-  height: 16.93mm;
-  max-width: 44.45mm;
-}
-
-.steri-label.label-manual {
-  width: 60mm;
-  height: 40mm;
-  max-width: 60mm;
-}
-
 
 /* =========================================================
    PRÉVIA — PROPORÇÃO REAL
@@ -2426,7 +2446,7 @@ input:focus-visible {
    ========================================================= */
 
 #labelPreview .label-kit,
-#labelPreview .label-kitCirurgico,
+#labelPreview .label-kit-cirurgico,
 #labelPreview .label-bandeja {
   width: 44.45mm;
   height: 16.93mm;
@@ -2440,4 +2460,36 @@ input:focus-visible {
 body.dedicated-bandeja #labelPreview .label-bandeja {
   width: 21mm;
   height: 33mm;
+
+    min-width: 21mm;
+  min-height: 33mm;
+
+  max-width: 21mm;
+  max-height: 33mm;
+
+  padding: 1.2mm;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   PRÉVIA — 44,45 × 16,93 MM
+   ========================================================= */
+
+#labelPreview .steri-label.label-kit,
+#labelPreview .steri-label.label-kit-cirurgico,
+#labelPreview .steri-label.label-bandeja {
+
+  width: 44.45mm;
+  height: 16.93mm;
+
+  min-width: 44.45mm;
+  min-height: 16.93mm;
+
+  max-width: 44.45mm;
+  max-height: 16.93mm;
+
+  padding: 1.2mm;
+
+  overflow: hidden;
 }

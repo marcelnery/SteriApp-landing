@@ -390,6 +390,8 @@ function setupEvents() {
 
   }
 
+  
+
 
   /* ----------------------------------------------------------
      QUANTIDADE
@@ -1248,6 +1250,12 @@ function selectLabelType(type) {
   state.selectedLabelType =
     type;
 
+    document.body.classList.toggle(
+  "dedicated-bandeja",
+  type === "bandeja" &&
+  state.printMode === "dedicated"
+);
+
 
   elements.labelTypeButtons.forEach(
     button => {
@@ -1475,6 +1483,13 @@ function setPrintMode(mode) {
 
   state.printMode =
     mode;
+
+document.body.classList.toggle(
+  "dedicated-bandeja",
+  state.selectedLabelType === "bandeja" &&
+  state.printMode === "dedicated"
+);
+
 if (
   state.selectedLabelType &&
   elements.labelSize
