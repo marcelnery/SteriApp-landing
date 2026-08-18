@@ -2435,6 +2435,18 @@ function printLabels() {
 const dimensions =
   getCurrentLabelDimensions();
 
+if (!dimensions) {
+
+  showToast(
+    "Erro",
+    "Não foi possível determinar o tamanho da etiqueta.",
+    "error"
+  );
+
+  return;
+
+}
+
 const labelWidth =
   `${dimensions.width}mm`;
 
@@ -2538,7 +2550,6 @@ const labelHeight =
 /* ============================================================
    CSS DA JANELA DE IMPRESSÃO
 ============================================================ */
-
 function createPrintCSS(
   width,
   height,
@@ -2548,21 +2559,19 @@ function createPrintCSS(
   const dedicated =
     printMode === "dedicated";
 
+  const type =
+    state.selectedLabelType;
 
   return `
 
     * {
-
       box-sizing: border-box;
-
     }
-
 
     html,
     body {
 
       margin: 0;
-
       padding: 0;
 
       background: #ffffff;
@@ -2572,21 +2581,16 @@ function createPrintCSS(
         Helvetica,
         sans-serif;
 
-      color: #111827;
+      color: #111111;
 
     }
-
 
     body {
 
-      -webkit-print-color-adjust:
-        exact;
-
-      print-color-adjust:
-        exact;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
 
     }
-
 
     .print-document {
 
@@ -2600,53 +2604,70 @@ function createPrintCSS(
         dedicated
           ? ""
           : `
-        grid-template-columns:
-          repeat(2, ${width});
+            grid-template-columns:
+              repeat(2, ${width});
 
-        gap: 4mm;
+            gap: 3mm;
 
-        padding: 8mm;
-      `
+            padding: 8mm;
+          `
       }
 
     }
 
-
     .steri-label {
 
       width: ${width};
-
-      min-height: ${height};
-
       height: ${height};
 
-      background: #ffffff;
+      min-width: ${width};
+      min-height: ${height};
 
-      border:
-        0.35mm solid #1f2937;
-
-      border-radius: 1.5mm;
-
-      padding: 2.5mm;
+      max-width: ${width};
+      max-height: ${height};
 
       overflow: hidden;
 
+      position: relative;
+
+      background: #ffffff;
+
+      color: #111111;
+
+      border:
+        0.25mm solid #222222;
+
+      border-radius: 0.8mm;
+
+      padding: 1.2mm;
+
       page-break-inside: avoid;
 
-      position: relative;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     }
 
+
+    /* =====================================================
+       CABEÇALHO
+    ===================================================== */
 
     .label-header {
 
       display: flex;
 
-      justify-content:
-        space-between;
+      align-items: center;
 
-      align-items:
-        center;
+      justify-content: space-between;
+
+      gap: 1mm;
+
+      height: auto;
+
+      margin-bottom: 0.7mm;
 
     }
 
@@ -2655,33 +2676,34 @@ function createPrintCSS(
 
       display: flex;
 
-      align-items:
-        center;
+      align-items: center;
 
-      gap: 1.5mm;
+      gap: 0.8mm;
+
+      min-width: 0;
 
     }
 
 
     .label-brand-mark {
 
-      width: 6mm;
+      width: 3.8mm;
+      height: 3.8mm;
 
-      height: 6mm;
+      min-width: 3.8mm;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
 
       border-radius: 50%;
 
       background: #5e2b97;
 
-      color: white;
+      color: #ffffff;
 
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 3.2mm;
+      font-size: 2.1mm;
 
       font-weight: 900;
 
@@ -2692,28 +2714,33 @@ function createPrintCSS(
 
       display: flex;
 
-      flex-direction:
-        column;
+      flex-direction: column;
+
+      min-width: 0;
 
     }
 
 
     .label-brand-text strong {
 
-      font-size: 3.4mm;
+      font-size: 2.4mm;
 
       line-height: 1;
+
+      white-space: nowrap;
 
     }
 
 
     .label-brand-text span {
 
-      font-size: 1.8mm;
+      font-size: 1.2mm;
 
-      color: #6b7280;
+      line-height: 1;
 
-      margin-top: 0.7mm;
+      color: #666666;
+
+      margin-top: 0.3mm;
 
     }
 
@@ -2722,6 +2749,8 @@ function createPrintCSS(
 
       text-align: right;
 
+      flex-shrink: 0;
+
     }
 
 
@@ -2729,11 +2758,13 @@ function createPrintCSS(
 
       display: block;
 
-      font-size: 1.6mm;
+      font-size: 1.15mm;
+
+      line-height: 1;
 
       font-weight: 700;
 
-      color: #6b7280;
+      color: #666666;
 
     }
 
@@ -2742,7 +2773,9 @@ function createPrintCSS(
 
       display: block;
 
-      font-size: 4mm;
+      font-size: 2.8mm;
+
+      line-height: 1;
 
       color: #5e2b97;
 
@@ -2753,24 +2786,32 @@ function createPrintCSS(
 
       width: 100%;
 
-      height: 0.25mm;
+      height: 0.18mm;
 
-      background: #d1d5db;
+      background: #cfcfcf;
 
-      margin:
-        1.5mm 0;
+      margin: 0.7mm 0;
 
     }
 
+
+    /* =====================================================
+       CONTEÚDO
+    ===================================================== */
 
     .label-main {
 
       display: flex;
 
-      justify-content:
-        space-between;
+      align-items: stretch;
 
-      gap: 2mm;
+      justify-content: space-between;
+
+      gap: 1mm;
+
+      height: calc(
+        100% - 9mm
+      );
 
     }
 
@@ -2784,11 +2825,13 @@ function createPrintCSS(
       display: grid;
 
       grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2, minmax(0, 1fr));
 
-      column-gap: 2mm;
+      column-gap: 1mm;
 
-      row-gap: 1mm;
+      row-gap: 0.45mm;
+
+      overflow: hidden;
 
     }
 
@@ -2797,6 +2840,8 @@ function createPrintCSS(
 
       min-width: 0;
 
+      overflow: hidden;
+
     }
 
 
@@ -2804,17 +2849,17 @@ function createPrintCSS(
 
       display: block;
 
-      font-size: 1.45mm;
+      font-size: 1mm;
 
-      color: #6b7280;
+      line-height: 1;
 
-      text-transform:
-        uppercase;
+      color: #666666;
+
+      text-transform: uppercase;
 
       font-weight: 700;
 
-      letter-spacing:
-        0.1mm;
+      white-space: nowrap;
 
     }
 
@@ -2823,7 +2868,9 @@ function createPrintCSS(
 
       display: block;
 
-      font-size: 2.05mm;
+      font-size: 1.55mm;
+
+      line-height: 1.05;
 
       white-space: nowrap;
 
@@ -2831,99 +2878,118 @@ function createPrintCSS(
 
       text-overflow: ellipsis;
 
-      margin-top: 0.3mm;
+      margin-top: 0.2mm;
 
     }
 
 
+    /* =====================================================
+       QR
+    ===================================================== */
+
     .label-qr-area {
 
-      width: 16mm;
+      width: 11mm;
 
-      flex-shrink: 0;
+      min-width: 11mm;
 
       display: flex;
 
-      flex-direction:
-        column;
+      flex-direction: column;
 
-      align-items:
-        center;
+      align-items: center;
 
-      justify-content:
-        center;
+      justify-content: center;
 
     }
 
 
     .label-qr {
 
-      width: 13mm;
+      width: 9mm;
 
-      height: 13mm;
+      height: 9mm;
 
       display: flex;
 
-      align-items:
-        center;
+      align-items: center;
 
-      justify-content:
-        center;
+      justify-content: center;
+
+      background: #ffffff;
 
     }
 
 
     .label-qr img {
 
-      width: 13mm;
+      width: 9mm !important;
 
-      height: 13mm;
+      height: 9mm !important;
+
+      display: block;
 
     }
 
 
     .label-qr canvas {
 
-      width: 13mm !important;
+      width: 9mm !important;
 
-      height: 13mm !important;
+      height: 9mm !important;
+
+      display: block;
 
     }
 
 
     .label-qr-caption {
 
-      font-size: 1.2mm;
+      font-size: 0.9mm;
+
+      line-height: 1;
 
       font-weight: 700;
 
-      color: #6b7280;
+      color: #666666;
 
-      margin-top: 0.5mm;
+      margin-top: 0.3mm;
 
       text-align: center;
 
+      white-space: nowrap;
+
     }
 
+
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
 
     .label-footer {
 
       display: flex;
 
-      justify-content:
-        space-between;
+      justify-content: space-between;
 
-      align-items:
-        center;
+      align-items: center;
+
+      height: 3mm;
+
+      margin-top: 0.4mm;
 
     }
 
 
     .label-result span {
 
-      font-size: 1.3mm;
+      display: block;
 
-      color: #6b7280;
+      font-size: 0.9mm;
+
+      line-height: 1;
+
+      color: #666666;
 
       font-weight: 700;
 
@@ -2932,9 +2998,11 @@ function createPrintCSS(
 
     .label-result strong {
 
-      font-size: 2mm;
-
       display: block;
+
+      font-size: 1.45mm;
+
+      line-height: 1;
 
       color: #15803d;
 
@@ -2943,22 +3011,240 @@ function createPrintCSS(
 
     .label-footer-cycle {
 
-      font-size: 1.6mm;
+      font-size: 1.1mm;
 
-      color: #6b7280;
+      line-height: 1;
+
+      color: #666666;
 
       font-weight: 700;
 
     }
 
 
+    /* =====================================================
+       BROCAS — 26 × 15 MM
+    ===================================================== */
+
+    .steri-label.label-brocas {
+
+      width: 26mm;
+
+      height: 15mm;
+
+      padding: 1mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-information {
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      row-gap: 0.3mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-field:nth-child(n+5) {
+
+      display: none;
+
+    }
+
+
+    .steri-label.label-brocas .label-qr-area {
+
+      width: 8mm;
+
+      min-width: 8mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-qr {
+
+      width: 6.5mm;
+
+      height: 6.5mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-qr img,
+    .steri-label.label-brocas .label-qr canvas {
+
+      width: 6.5mm !important;
+
+      height: 6.5mm !important;
+
+    }
+
+
+    .steri-label.label-brocas .label-field span {
+
+      font-size: 0.85mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-field strong {
+
+      font-size: 1.25mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-brand-text strong {
+
+      font-size: 2mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-brand-text span {
+
+      font-size: 0.9mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-cycle small {
+
+      font-size: 0.9mm;
+
+    }
+
+
+    .steri-label.label-brocas .label-cycle strong {
+
+      font-size: 2.2mm;
+
+    }
+
+
+    /* =====================================================
+       KIT / KIT CIRÚRGICO / BANDEJA
+       44,45 × 16,93 MM
+    ===================================================== */
+
+    .steri-label.label-kit,
+    .steri-label.label-kitCirurgico,
+    .steri-label.label-bandeja {
+
+      width: 44.45mm;
+
+      height: 16.93mm;
+
+      padding: 1.2mm;
+
+    }
+
+
+    /* =====================================================
+       BANDEJA DEDICADA
+       21 × 33 MM
+    ===================================================== */
+
+    ${
+      type === "bandeja" && dedicated
+        ? `
+
+          .steri-label.label-bandeja {
+
+            width: 21mm;
+
+            height: 33mm;
+
+            padding: 1.2mm;
+
+          }
+
+          .steri-label.label-bandeja .label-main {
+
+            flex-direction: column;
+
+            height: auto;
+
+            gap: 1mm;
+
+          }
+
+          .steri-label.label-bandeja .label-information {
+
+            grid-template-columns:
+              1fr;
+
+            row-gap: 0.7mm;
+
+          }
+
+          .steri-label.label-bandeja .label-qr-area {
+
+            width: 100%;
+
+            min-width: 0;
+
+            height: 10mm;
+
+          }
+
+          .steri-label.label-bandeja .label-qr {
+
+            width: 8mm;
+
+            height: 8mm;
+
+          }
+
+          .steri-label.label-bandeja .label-qr img,
+          .steri-label.label-bandeja .label-qr canvas {
+
+            width: 8mm !important;
+
+            height: 8mm !important;
+
+          }
+
+        `
+        : ""
+    }
+
+
+    /* =====================================================
+       MANUAL
+    ===================================================== */
+
+    .steri-label.label-manual {
+
+      width: ${width};
+
+      height: ${height};
+
+      min-width: ${width};
+
+      min-height: ${height};
+
+      max-width: ${width};
+
+      max-height: ${height};
+
+    }
+
+
+    /* =====================================================
+       FALLBACK QR
+    ===================================================== */
+
     .qr-fallback {
 
-      width: 12mm;
+      width: 8mm;
 
-      height: 12mm;
+      height: 8mm;
 
-      border: 0.5mm solid #111827;
+      border:
+        0.3mm solid #111111;
 
       display: flex;
 
@@ -2966,12 +3252,16 @@ function createPrintCSS(
 
       justify-content: center;
 
-      font-size: 3mm;
+      font-size: 2mm;
 
       font-weight: 900;
 
     }
 
+
+    /* =====================================================
+       IMPRESSÃO
+    ===================================================== */
 
     @media print {
 
@@ -2981,8 +3271,8 @@ function createPrintCSS(
           dedicated
             ? `
               size:
-                ${width}
-                ${height};
+                ${width}mm
+                ${height}mm;
 
               margin: 0;
             `
@@ -2996,9 +3286,16 @@ function createPrintCSS(
       }
 
 
+      html,
       body {
 
         margin: 0;
+
+        padding: 0;
+
+        width: auto;
+
+        min-height: auto;
 
       }
 
@@ -3008,13 +3305,21 @@ function createPrintCSS(
         ${
           dedicated
             ? `
-              width: ${width};
+              width: ${width}mm;
 
-              min-height: ${height};
+              height: ${height}mm;
 
               padding: 0;
+
+              margin: 0;
+
+              display: block;
             `
-            : ""
+            : `
+              width: 100%;
+
+              padding: 8mm;
+            `
         }
 
       }
@@ -3022,8 +3327,11 @@ function createPrintCSS(
 
       .steri-label {
 
-        page-break-inside:
-          avoid;
+        page-break-inside: avoid;
+
+        break-inside: avoid;
+
+        box-shadow: none !important;
 
       }
 
@@ -3033,15 +3341,13 @@ function createPrintCSS(
           ? `
             .steri-label {
 
-              page-break-after:
-                always;
+              page-break-after: always;
 
             }
 
             .steri-label:last-child {
 
-              page-break-after:
-                auto;
+              page-break-after: auto;
 
             }
           `
@@ -3053,7 +3359,6 @@ function createPrintCSS(
   `;
 
 }
-
 
 /* ============================================================
    SCRIPT DO QR CODE PARA IMPRESSÃO
