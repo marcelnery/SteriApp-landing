@@ -61,9 +61,9 @@ const LABEL_TYPES = {
     description:
       "Ideal para brocas odontológicas.",
 
-    width: 50,
+    width: 26,
 
-    height: 30,
+    height: 15,
 
     unit: "mm",
 
@@ -81,9 +81,9 @@ const LABEL_TYPES = {
     description:
       "Instrumentais em geral.",
 
-    width: 60,
+    width: 44.45,
 
-    height: 40,
+    height: 16.93,
 
     unit: "mm",
 
@@ -101,9 +101,9 @@ const LABEL_TYPES = {
     description:
       "Caixas cirúrgicas completas.",
 
-    width: 70,
+    width: 44.45,
 
-    height: 50,
+    height: 16.93,
 
     unit: "mm",
 
@@ -121,11 +121,22 @@ const LABEL_TYPES = {
     description:
       "Etiquetas para bandejas clínicas.",
 
-    width: 80,
+    /*
+     * Medida utilizada na folha A4.
+     */
+    width: 44.45,
 
-    height: 50,
+    height: 16.93,
 
     unit: "mm",
+
+    /*
+     * Medida específica para
+     * impressora dedicada.
+     */
+    dedicatedWidth: 21,
+
+    dedicatedHeight: 33,
 
     color: "purple"
 
@@ -1169,6 +1180,62 @@ function renderCycleResult(cycle) {
    SELECIONAR TIPO DE ETIQUETA
 ============================================================ */
 
+function getCurrentLabelDimensions() {
+
+  if (!state.selectedLabelType) {
+
+    return null;
+
+  }
+
+
+  const config =
+    LABEL_TYPES[state.selectedLabelType];
+
+
+  if (!config) {
+
+    return null;
+
+  }
+
+
+  /*
+   * BANDEJA:
+   * A4 = 44,45 × 16,93 mm
+   * Dedicada = 21 × 33 mm
+   */
+
+  if (
+    state.selectedLabelType === "bandeja" &&
+    state.printMode === "dedicated"
+  ) {
+
+    return {
+
+      width: config.dedicatedWidth,
+
+      height: config.dedicatedHeight,
+
+      unit: "mm"
+
+    };
+
+  }
+
+
+  return {
+
+    width: config.width,
+
+    height: config.height,
+
+    unit: config.unit
+
+  };
+
+}
+
 function selectLabelType(type) {
 
   if (!LABEL_TYPES[type]) {
@@ -1214,14 +1281,19 @@ function selectLabelType(type) {
   }
 
 
-  if (
-    elements.labelSize
-  ) {
+ if (elements.labelSize) {
+
+  const dimensions =
+    getCurrentLabelDimensions();
+
+  if (dimensions) {
 
     elements.labelSize.textContent =
-      `${config.width} × ${config.height} ${config.unit}`;
+      `${dimensions.width} × ${dimensions.height} ${dimensions.unit}`;
 
   }
+
+}
 
 
   updateConfigurationMessage();
@@ -1403,7 +1475,22 @@ function setPrintMode(mode) {
 
   state.printMode =
     mode;
+if (
+  state.selectedLabelType &&
+  elements.labelSize
+) {
 
+  const dimensions =
+    getCurrentLabelDimensions();
+
+  if (dimensions) {
+
+    elements.labelSize.textContent =
+      `${dimensions.width} × ${dimensions.height} ${dimensions.unit}`;
+
+  }
+
+}
 
   elements.printModeOptions.forEach(
     option => {
@@ -2345,13 +2432,14 @@ function printLabels() {
 
   }
 
+const dimensions =
+  getCurrentLabelDimensions();
 
-  const labelWidth =
-    `${config.width}mm`;
+const labelWidth =
+  `${dimensions.width}mm`;
 
-  const labelHeight =
-    `${config.height}mm`;
-
+const labelHeight =
+  `${dimensions.height}mm`;
 
   const printCSS =
     createPrintCSS(
