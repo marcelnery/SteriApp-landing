@@ -23,7 +23,7 @@ form.addEventListener(
 
       const response =
         await fetch(
-          "https://steriapp.com.br/api/login",
+          "https://api.steriapp.com.br/api/login",
           {
             method:"POST",
 
